@@ -1,0 +1,203 @@
+/* Global Styles */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Default Light Mode */
+body {
+    display: flex;
+    flex-direction: column;
+    transition: all 0.3s ease-in-out;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+/* Dark Mode for Navbar & Sidebar Only */
+.dark-mode .navbar {
+    background-color: #1e1e1e !important;
+    color: white !important;
+}
+
+.dark-mode .sidebar {
+    background-color: #242424 !important;
+}
+
+.dark-mode .nav-link {
+    color: #ffffff !important;
+}
+
+.dark-mode .nav-link:hover {
+    background-color: #3a3a3a !important;
+}
+
+/* Ensure buttons/icons remain visible */
+.dark-mode .btn-home i, 
+.dark-mode .btn-setting i, 
+.dark-mode .btn-logout {
+    color: white !important;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode #darkModeToggle {
+    background-color: white;
+    color: black;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between; /* Align items to the left and right */
+}
+
+.navbar.collapsed {
+    width: calc(100% - 250px); /* Shrink the navbar width when sidebar is expanded */
+}
+
+.navbar .btn {
+    color: #fff;
+}
+
+.navbar .btn i {
+    font-size: 16px;
+}
+
+/* Sidebar adjustments */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #000000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+    overflow-x: hidden;
+    z-index: 1000;
+}
+
+.sidebar .navbar-brand {
+    padding: 14px;
+    font-size: 18px;
+    text-align: center;
+    display: block;
+    color: #ffffff;
+    border-bottom: 1px solid #495057;
+}
+
+/* .sidebar .navbar-brand .fas.fa-key {
+    margin-right: 0px;
+} */
+
+/* Sidebar collapsed state */
+.sidebar.collapsed {
+    width: 0;
+    padding: 0;
+}
+
+.sidebar.collapsed .navbar-brand,
+.sidebar.collapsed .nav-link {
+    display: none;
+}
+
+/* Adjusting content's position for dynamic table movement */
+.content {
+    margin-left: 0;
+    margin-top: 70px;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar.collapsed + .content {
+    margin-left: 0;
+    width: 100%;
+}
+
+.sidebar + .content {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+}
+
+/* Table adjustment */
+.table {
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.sidebar.collapsed + .content .table {
+    width: 100%;
+}
+
+.sidebar + .content .table {
+    width: calc(100% - 250px);
+}
+
+/* Navbar Hover Effect */
+.nav-link {
+    color: #ffffff;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.nav-link i {
+    margin-right: 10px;
+}
+
+.nav-link:hover {
+    background-color: #495057;
+    padding-left: 22px;
+    color: #ffffff;
+}
+
+.navbar.expanded {
+    width: 100%;
+}
+
+.nav {
+    padding-top: 20px;
+}
+
+.btn-home, .btn-setting, .btn-logout {
+    background-color: transparent;
+    border: none;
+    padding: 8px;
+    font-size: 18px;
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-logout:hover {
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    background-color: transparent;
+    transform: scale(1.08);
+}
+
+.btn-home i, .btn-setting i {
+    color: #343a40;
+    font-size: 1.3rem;
+}
+
+#navbarText {
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+    transform: translateX(-10px);
+    font-size: 18px;
+}
+
+.navbar a {
+    text-decoration: none !important;
+    font-size: 16px;
+}
+
