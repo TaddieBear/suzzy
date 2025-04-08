@@ -21,10 +21,17 @@ class Faculty extends Model
         'mname',
         'lname',
         'suffix',
-    ];
+        'admin_id',  // Added field
+        'status',    // Added field
+    ];    
 
     public function logs()
     {
         return $this->hasMany(Logs::class, 'faculty_id', 'faculty_id');
+    }
+    // Allow dynamic connection switching
+    public function setConnectionName($connection)
+    {
+        $this->setConnection($connection);
     }
 }
