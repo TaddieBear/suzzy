@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(`✅ UID received: ${data.uid}`);
             rfidInput.value = data.uid;
             scannerStatus.classList.add('d-none');
+        } else {
+            rfidInput.value = '';
         }
 
         updateScannerStatus(data.scannerStatus);
@@ -39,25 +41,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function updateScannerStatus(isConnected) {
         if (isConnected) {
-            scannerStatus.className = 'alert alert-success';
+            scannerStatus.className = 'alert alert-success mt-2';
             scannerStatus.innerText = '✅ NFC scanner detected!';
-            scannerStatus.style.display = 'block'; // Show alert
-    
-            // Auto-hide after 2 seconds
+            scannerStatus.style.display = 'block';
+            scannerStatus.style.opacity = '1';
+
+            // Fade out after 2 seconds
             setTimeout(() => {
                 scannerStatus.style.opacity = '0';
-                setTimeout(() => scannerStatus.style.display = 'none', 500); // Hide after fade-out
+                setTimeout(() => scannerStatus.style.display = 'none', 500);
             }, 2000);
         } else if (!rfidInput.value) {
-            scannerStatus.className = 'alert alert-warning';
+            scannerStatus.className = 'alert alert-warning mt-2';
             scannerStatus.innerText = '⚠️ Warning: NFC scanner not detected. Please plug it in.';
             scannerStatus.style.display = 'block';
             scannerStatus.style.opacity = '1';
         }
     }
-    
 
-    facultyForm.addEventListener('submit', function () {
+    facultyForm?.addEventListener('submit', function () {
         setTimeout(() => {
             rfidInput.value = ''; // Clear ONLY after form submission
         }, 500);

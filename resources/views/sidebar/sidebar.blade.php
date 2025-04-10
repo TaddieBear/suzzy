@@ -3,11 +3,10 @@
     <!-- Navbar brand moved here with key icon -->
     <a class="navbar-brand text-white" href="{{ route('admin.dashboard') }}"> 
         <i class="fa-solid fa-key"></i>
-        <!-- <i class="fas fa-key d-inline d-sm-none"></i> -->
         <span class="d-none d-sm-inline ms-2">Key Cabinet</span>
     </a>
 
-    <!-- <ul class="nav flex-column">
+    <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.dashboard') }}">
                 <i class="fa-solid fa-chart-simple"></i> <span>Dashboard</span>
@@ -33,5 +32,6 @@
                 <i class="fa-solid fa-address-card"></i> <span>Logs</span>
             </a>
         </li>
-    </ul>-->
+    </ul>
 </div>
+

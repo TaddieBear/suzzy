@@ -1,18 +1,22 @@
 <?php
 
-// web.php
-
-use App\Http\Middleware\PreventBackHistory;
-use App\Http\Middleware\RedirectIfNotAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Api\LogsApiController;
+use App\Http\Controllers\Api\FacultyControllerAPI;
+use App\Http\Controllers\Api\LabKeyControllerApi;
+use App\Http\Middleware\PreventBackHistory;
+use App\Http\Middleware\RedirectIfNotAdmin;
+use App\Http\Middleware\ApiKeyMiddleware;
 
+// Public routes
 Route::get('/', [AdminController::class, 'welcome'])->name('admin.welcome');
 Route::get('/redirect', [AdminController::class, 'loader'])->name('admin.loader');
 Route::get('/login', [AdminController::class, 'login'])->name('login');
-Route::post('/login', [AdminController::class, 'authenticate'])->name('admin.authenticate'); // Change here
+Route::post('/login', [AdminController::class, 'authenticate'])->name('admin.authenticate');
 Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
+// Admin routes with middleware
 Route::middleware(['auth:admin', RedirectIfNotAdmin::class, PreventBackHistory::class])->group(function () {
     Route::get('/admin/app', [AdminController::class, 'app'])->name('admin.app');
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -26,27 +30,7 @@ Route::middleware(['auth:admin', RedirectIfNotAdmin::class, PreventBackHistory::
     Route::get('/admin/log', [AdminController::class, 'log'])->name('admin.log');
 });
 
-// use App\Http\Controllers\Api\LogsApiController;
-
-// Route::post('/logs/store', [LogsApiController::class, 'store'])
-//     ->name('logs.store')
-//     ->withoutMiddleware([\Illuminate\Foundation\Http\Middleware\VerifyCsrfToken::class]);
-
-// use App\Http\Controllers\Api\FacultyControllerAPI;
-
-// Route::get('api/faculty', [FacultyControllerAPI::class, 'index']);
-// Route::get('api/faculty/{id}', [FacultyControllerAPI::class, 'show']);
-
-// use App\Http\Controllers\Api\LabKeyControllerApi;
-
-// Route::get('api/key', [LabKeyControllerApi::class, 'index']);
-// Route::get('api/key/{id}', [LabKeyControllerApi::class, 'show']);
-
-use App\Http\Middleware\ApiKeyMiddleware;
-use App\Http\Controllers\Api\LogsApiController;
-use App\Http\Controllers\Api\FacultyControllerAPI;
-use App\Http\Controllers\Api\LabKeyControllerApi;
-
+// API routes with API key middleware
 Route::middleware([ApiKeyMiddleware::class])->group(function () {
     Route::post('/logs/store', [LogsApiController::class, 'store'])
         ->name('logs.store')
@@ -57,13 +41,4 @@ Route::middleware([ApiKeyMiddleware::class])->group(function () {
 
     Route::get('api/key', [LabKeyControllerApi::class, 'index']);
     Route::get('api/key/{id}', [LabKeyControllerApi::class, 'show']);
-    
 });
-
-// use App\Http\Controllers\Api\LogsControllerAPI;
-// use Illuminate\Http\Request;
-
-// Route::prefix('api')->group(function () {
-//     Route::post('logs', [LogsControllerAPI::class, 'store'])->middleware('api');
-//     Route::get('logs', [LogsControllerAPI::class, 'index'])->middleware('api');
-// });

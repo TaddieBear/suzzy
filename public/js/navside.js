@@ -1,60 +1,46 @@
 document.addEventListener('DOMContentLoaded', function () {
     const sidebar = document.getElementById('sidebar');
     const navbar = document.getElementById('navbar');
-    const content = document.querySelector('.content');
-    const toggleIcon = document.getElementById('toggleSidebar').querySelector('i');
+    const content = document.querySelector('.content') || document.getElementById('content');
+    const toggleButton = document.getElementById('toggleSidebar');
+    const toggleIcon = toggleButton.querySelector('i');
 
+    // Initial collapsed state
     sidebar.classList.add('collapsed');
     navbar.style.width = "100%";
     navbar.style.marginLeft = "0";
-    content.style.marginLeft = "0";
-    content.style.width = "100%";
+    if (content) {
+        content.style.marginLeft = "0";
+        content.style.width = "100%";
+    }
 
-    document.getElementById('toggleSidebar').addEventListener('click', function () {
+    toggleButton.addEventListener('click', function () {
         sidebar.classList.toggle('collapsed');
         sidebar.classList.toggle('expanded');
+        navbar.classList.toggle('collapsed');
+        if (content) {
+            content.classList.toggle('expanded');
+        }
 
-        if (sidebar.classList.contains('collapsed')) {
+        const isCollapsed = sidebar.classList.contains('collapsed');
+
+        // Update navbar and content layout
+        if (isCollapsed) {
             navbar.style.width = "100%";
             navbar.style.marginLeft = "0";
-            content.style.marginLeft = "0";
-            content.style.width = "100%";
-            toggleIcon.classList.remove('fa-xmark');
-            toggleIcon.classList.add('fa-bars');
+            if (content) {
+                content.style.marginLeft = "0";
+                content.style.width = "100%";
+            }
+            toggleIcon.classList.replace('fa-xmark', 'fa-bars');
         } else {
             navbar.style.width = "calc(100% - 250px)";
             navbar.style.marginLeft = "250px";
-            content.style.marginLeft = "250px";
-            content.style.width = "calc(100% - 250px)";
-            toggleIcon.classList.remove('fa-bars');
-            toggleIcon.classList.add('fa-xmark');
+            if (content) {
+                content.style.marginLeft = "250px";
+                content.style.width = "calc(100% - 250px)";
+            }
+            toggleIcon.classList.replace('fa-bars', 'fa-xmark');
         }
     });
 });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//     const sidebar = document.getElementById('sidebar');
-//     const navbar = document.getElementById('navbar');
-//     const toggleIcon = document.getElementById('toggleSidebar').querySelector('i');
-
-//     sidebar.classList.add('collapsed');
-//     navbar.style.width = "100%";
-//     navbar.style.marginLeft = "0";
-
-//     document.getElementById('toggleSidebar').addEventListener('click', function () {
-//         sidebar.classList.toggle('collapsed');
-//         sidebar.classList.toggle('expanded');
-
-//         if (sidebar.classList.contains('collapsed')) {
-//             navbar.style.width = "100%";
-//             navbar.style.marginLeft = "0";
-//             toggleIcon.classList.remove('fa-xmark');
-//             toggleIcon.classList.add('fa-bars');
-//         } else {
-//             navbar.style.width = "calc(100% - 250px)";
-//             navbar.style.marginLeft = "250px";  
-//             toggleIcon.classList.remove('fa-bars');
-//             toggleIcon.classList.add('fa-xmark');
-//         }
-//     });
-// });

@@ -30,4 +30,9 @@ class FacultyControllerAPI extends Controller {
         Faculty::destroy($id);
         return response()->json(null, 204);
     }
+
 }
+
+
+
+
