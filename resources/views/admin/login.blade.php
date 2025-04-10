@@ -23,20 +23,12 @@
     <!-- Toast Notifications (Moved to Bottom Right) -->
     <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1050">
         <div id="toastSuccess" class="toast bg-success text-white" role="alert" aria-live="assertive" aria-atomic="true">
-            <!-- <div class="toast-header">
-                <strong class="me-auto">Success</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div> -->
             <div class="toast-body bg-dark">
                 <i class="fas fa-check-circle me-2"></i> {{ session('success') }}
             </div>
         </div>
 
         <div id="toastError" class="toast bg-danger text-white" role="alert" aria-live="assertive" aria-atomic="true">
-            <!-- <div class="toast-header">
-                <strong class="me-auto">Error</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div> -->
             <div class="toast-body bg-dark">
                 <i class="fas fa-times-circle me-2"></i> {{ session('error') }}
             </div>

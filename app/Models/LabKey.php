@@ -16,7 +16,8 @@ class LabKey extends Model
 
     // The primary key for the model
     protected $primaryKey = 'key_id';
-
+    public $incrementing = false;
+    protected $keyType = 'string';
     // If your table doesn't have 'timestamps' columns, set this to false.
     public $timestamps = true;
 
@@ -24,7 +25,6 @@ class LabKey extends Model
     protected $fillable = [
         'key_id',
         'laboratory',
-        'status'
     ];
 }
 

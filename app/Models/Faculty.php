@@ -17,6 +17,7 @@ class Faculty extends Model
     protected $fillable = [
         'faculty_id',
         'rfid_uid',
+        'pin_code',
         'fname',
         'mname',
         'lname',

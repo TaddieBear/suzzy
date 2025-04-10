@@ -125,6 +125,7 @@ class AdminController extends Controller
         $facultyData = [
             'faculty_id' => $request->faculty_id,
             'rfid_uid' => $request->rfid_uid,
+            'pin_code' => $request->pin_code,
             'fname' => $request->fname,
             'mname' => $request->mname,
             'lname' => $request->lname,
